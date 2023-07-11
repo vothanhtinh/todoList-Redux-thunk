@@ -9,11 +9,11 @@ import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 // Components
 import { ButtonIcon } from "app/components/atoms/ButtonIcon";
 import { Checkbox } from "app/components/atoms/CheckBox";
+import { MenuShowMoreInbox } from "./components/MenuShowMoreInbox/index";
 import FormAddInbox from "../FormAddInbox";
 
 // Styled
 import { BlockStyle, LeftStyle, RightStyle } from "./styled";
-import { MenuShowMoreInbox } from "./components/MenuShowMoreInbox/index";
 
 interface TaskItemProps {
   title: string;
@@ -61,7 +61,13 @@ export const InboxItem: React.FC<TaskItemProps> = (props) => {
                 <ButtonIcon iconStart={AppsIcon} />
               </div>
             )}
-            <Checkbox />
+            <Checkbox
+              id={id}
+              title={title}
+              status={status}
+              description={description}
+              type="inbox"
+            />
             <span>{title}</span>
           </LeftStyle>
           <RightStyle>

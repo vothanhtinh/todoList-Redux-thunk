@@ -29,6 +29,15 @@ const inboxSlice = createSlice({
         state.inboxs[index] = { id, title, description, status };
       }
     },
+
+    changeStatusInbox: (state, action: PayloadAction<Inbox>) => {
+      const { id, title, description, status } = action.payload;
+      const index = state.inboxs.findIndex((inbox) => inbox.id === id);
+      if (index !== -1) {
+        state.inboxs[index] = { id, title, description, status: 1 };
+      }
+    },
+
     deleteInbox: (state, action: PayloadAction<Inbox>) => {
       const { id } = action.payload;
       state.inboxs = state.inboxs.filter((inbox) => inbox.id !== id);
@@ -36,5 +45,6 @@ const inboxSlice = createSlice({
   },
 });
 
-export const { addInbox, updateInbox, deleteInbox } = inboxSlice.actions;
+export const { addInbox, updateInbox, deleteInbox, changeStatusInbox } =
+  inboxSlice.actions;
 export default inboxSlice.reducer;

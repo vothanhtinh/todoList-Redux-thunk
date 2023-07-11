@@ -13,9 +13,14 @@ import ExtensionOutlinedIcon from "@mui/icons-material/ExtensionOutlined";
 
 // Styled
 import { MenuDeleteStyle, PaperStyle } from "./styled";
+
+// Components
 import { MenuIconItem } from "app/components/atoms/MenuIconItem";
+
+// Store
 import { useAppDispatch } from "store/configStore";
 import { deleteToday } from "store/todaySlice";
+
 interface TaskItemProps {
   title: string;
   description: string;

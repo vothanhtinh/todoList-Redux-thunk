@@ -29,6 +29,15 @@ const todaySlice = createSlice({
         state.todays[index] = { id, title, description, status };
       }
     },
+
+    changeStatusToday: (state, action: PayloadAction<Today>) => {
+      const { id, title, description, status } = action.payload;
+      const index = state.todays.findIndex((today) => today.id === id);
+      if (index !== -1) {
+        state.todays[index] = { id, title, description, status: 1 };
+      }
+    },
+
     deleteToday: (state, action: PayloadAction<Today>) => {
       const { id } = action.payload;
       state.todays = state.todays.filter((today) => today.id !== id);
@@ -36,5 +45,6 @@ const todaySlice = createSlice({
   },
 });
 
-export const { addToday, updateToday, deleteToday } = todaySlice.actions;
+export const { addToday, updateToday, deleteToday, changeStatusToday } =
+  todaySlice.actions;
 export default todaySlice.reducer;

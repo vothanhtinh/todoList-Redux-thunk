@@ -57,7 +57,13 @@ export const TodayItem: React.FC<TaskItemProps> = (props) => {
             <div className={`hide ${isHovered ? "show" : ""}`}>
               <ButtonIcon iconStart={AppsIcon} />
             </div>
-            <Checkbox />
+            <Checkbox
+              id={id}
+              title={title}
+              status={status}
+              description={description}
+              type="today"
+            />
             <span>{title}</span>
           </LeftStyle>
           <RightStyle>

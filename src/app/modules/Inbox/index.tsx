@@ -13,6 +13,8 @@ import {
 import AddTask from "app/components/atoms/AddTask";
 import AddSection from "app/components/atoms/AddSection";
 import EmtyState from "app/components/atoms/EmtyState";
+
+// Styled
 import {
   GroupIcon,
   InboxTitle,
@@ -31,7 +33,9 @@ const Inbox: React.FC = React.memo(() => {
   const [clickAddTask, setClickAddTask] = useState(false);
 
   // get inbox from store
-  const inboxs = useAppSelector((state) => state.inboxReducer.inboxs);
+  const inboxs = useAppSelector((state) =>
+    state.inboxReducer.inboxs.filter((inbox) => inbox.status === 0)
+  );
 
   const ClickAdd = () => {
     setClickAddTask(true);

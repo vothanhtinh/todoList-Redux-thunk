@@ -7,6 +7,10 @@ import { Link } from "react-router-dom";
 
 // Components
 import EmtyState from "app/components/atoms/EmtyState";
+import AddTaskToday from "app/components/atoms/AddTaskToday";
+import { TodayItem } from "app/modules/Today/components/TodayItem";
+
+// Styled
 import {
   GroupIcon,
   InboxTitle,
@@ -14,15 +18,17 @@ import {
   TextBottom,
   TextHeader,
 } from "./styled";
+
+// Store
 import { useAppSelector } from "store/configStore";
-import AddTaskToday from "app/components/atoms/AddTaskToday";
-import { TodayItem } from "app/modules/Today/components/TodayItem";
 
 const ToDay: React.FC = () => {
   const [clickAddTask, setClickAddTask] = useState(false);
 
   // get today from store
-  const todays = useAppSelector((state) => state.todayReducer.todays);
+  const todays = useAppSelector((state) =>
+    state.todayReducer.todays.filter((today) => today.status === 0)
+  );
 
   const ClickAdd = () => {
     setClickAddTask(true);
