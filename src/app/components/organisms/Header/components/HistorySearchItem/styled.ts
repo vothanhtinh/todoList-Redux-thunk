@@ -23,3 +23,8 @@ export const StyleImage = styled.div`
   }
   margin-right: 15px;
 `;
+
+export const SpanStyle = styled.span`
+  font-size: 12px;
+  opacity: 0.7;
+`;

@@ -66,31 +66,28 @@ export const TodayItem: React.FC<TaskItemProps> = (props) => {
             />
             <span>{title}</span>
           </LeftStyle>
-          <RightStyle>
-            {!isShowMore ? (
+          <RightStyle className={`hide ${isHovered ? "show" : ""}`}>
+            {!isShowMore && (
               <>
-                <span className={`hide ${isHovered ? "show" : ""}`}>
-                  <span onClick={() => ClickEdit(id)}>
-                    <ButtonIcon iconStart={BorderColorIcon} />
-                  </span>
-                  <ButtonIcon iconStart={CalendarTodayIcon} />
-                  <ButtonIcon iconStart={ChatBubbleOutlineIcon} />
+                <span onClick={() => ClickEdit(id)}>
+                  <ButtonIcon iconStart={BorderColorIcon} />
                 </span>
+                <ButtonIcon iconStart={CalendarTodayIcon} />
+                <ButtonIcon iconStart={ChatBubbleOutlineIcon} />
                 <span onClick={ClickShowMore}>
                   <ButtonIcon iconStart={MoreHorizIcon} />
                 </span>
               </>
-            ) : (
-              <span onClick={ClickShowMore} style={{ display: "inline" }}>
+            )}
+            {isShowMore && (
+              <span onClick={ClickShowMore}>
                 <ButtonIcon iconStart={MoreHorizIcon} />
-                {isShowMore && (
-                  <MenuShowMoreToday
-                    title={title}
-                    description={description}
-                    status={status}
-                    id={id}
-                  />
-                )}
+                <MenuShowMoreToday
+                  title={title}
+                  description={description}
+                  status={status}
+                  id={id}
+                />
               </span>
             )}
           </RightStyle>

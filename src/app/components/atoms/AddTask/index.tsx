@@ -11,21 +11,21 @@ import { StyleButton, StyleIcon, Text } from "./styled";
 
 interface AddTaskProps {
   clickAddTask: boolean;
-  ClickAdd: () => void;
-  ClickCancel: () => void;
+  onClickAdd: () => void;
+  onClickCancel: () => void;
 }
 
 const AddTask: React.FC<AddTaskProps> = (props) => {
-  const { clickAddTask, ClickAdd, ClickCancel } = props;
+  const { clickAddTask, onClickAdd, onClickCancel } = props;
   const [task, setTask] = useState(false);
 
   const handleTask = () => {
-    ClickAdd();
+    onClickAdd();
     setTask(true);
   };
 
   const handleCancel = () => {
-    ClickCancel();
+    onClickCancel();
     setTask(false);
   };
 

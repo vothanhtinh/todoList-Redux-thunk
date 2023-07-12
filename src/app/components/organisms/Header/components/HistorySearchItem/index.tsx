@@ -1,9 +1,10 @@
 // Styled
-import { StyleImage, StyleItem } from "./styled";
+import { SpanStyle, StyleImage, StyleItem } from "./styled";
 
 interface HistorySearchItemProps {
   icon: string;
   title: string;
+  sub?: string;
 }
 
 const HistorySearchItem: React.FC<HistorySearchItemProps> = (props) => {
@@ -14,6 +15,7 @@ const HistorySearchItem: React.FC<HistorySearchItemProps> = (props) => {
           <img src={props.icon} alt={props.title} />
         </StyleImage>
         <p style={{ width: "100%" }}>{props.title}</p>
+        <SpanStyle>{props.sub}</SpanStyle>
       </StyleItem>
     </>
   );

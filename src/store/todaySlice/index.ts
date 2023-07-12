@@ -31,7 +31,7 @@ const todaySlice = createSlice({
     },
 
     changeStatusToday: (state, action: PayloadAction<Today>) => {
-      const { id, title, description, status } = action.payload;
+      const { id, title, description } = action.payload;
       const index = state.todays.findIndex((today) => today.id === id);
       if (index !== -1) {
         state.todays[index] = { id, title, description, status: 1 };

@@ -31,7 +31,7 @@ const inboxSlice = createSlice({
     },
 
     changeStatusInbox: (state, action: PayloadAction<Inbox>) => {
-      const { id, title, description, status } = action.payload;
+      const { id, title, description } = action.payload;
       const index = state.inboxs.findIndex((inbox) => inbox.id === id);
       if (index !== -1) {
         state.inboxs[index] = { id, title, description, status: 1 };

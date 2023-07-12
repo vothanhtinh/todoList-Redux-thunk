@@ -26,7 +26,6 @@ export const BlockStyle = styled.div`
 
     .show {
       display: block;
-      margin-left: -30px;
     }
   }
 `;
@@ -42,4 +41,13 @@ export const RightStyle = styled.div`
   margin-right: -30px;
   align-items: center;
   display: flex;
+`;
+
+export const StyleText = styled.div`
+  padding-left: 5px;
+  font-size: 14px;
+  .des {
+    font-size: 12px;
+    opacity: 0.7;
+  }
 `;

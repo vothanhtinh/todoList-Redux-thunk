@@ -31,7 +31,7 @@ export const MenuShowMoreInbox: React.FC<TaskItemProps> = (props) => {
 
   const dispatch = useAppDispatch();
 
-  const ClickDeleteInbox = () => {
+  const onClickDeleteInbox = () => {
     dispatch(deleteInbox({ title, description, id, status }));
   };
   return (
@@ -63,7 +63,7 @@ export const MenuShowMoreInbox: React.FC<TaskItemProps> = (props) => {
         />
         <Divider />
 
-        <MenuDeleteStyle onClick={ClickDeleteInbox}>
+        <MenuDeleteStyle onClick={onClickDeleteInbox}>
           <ListItemIcon>
             <Cloud fontSize="small" />
           </ListItemIcon>

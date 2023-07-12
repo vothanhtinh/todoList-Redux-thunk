@@ -1,5 +1,5 @@
 // Libraries
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { v4 as uuidv4 } from "uuid";
 
 // Icons
@@ -45,6 +45,8 @@ const FormAddToday: React.FC<TaskProps> = ({ onCancel, initialTask }) => {
 
   const [taskName, setTaskName] = useState("");
   const [description, setDescription] = useState("");
+
+  const isAddButtonDisabled = useMemo(() => !taskName.trim(), [taskName]);
 
   useEffect(() => {
     if (initialTask) {
@@ -97,7 +99,6 @@ const FormAddToday: React.FC<TaskProps> = ({ onCancel, initialTask }) => {
     setDescription("");
     onCancel();
   };
-  const isAddButtonDisabled = taskName.trim() === "";
 
   return (
     <FormContainer>

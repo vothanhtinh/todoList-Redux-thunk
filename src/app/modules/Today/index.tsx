@@ -20,22 +20,23 @@ import {
 } from "./styled";
 
 // Store
-import { useAppSelector } from "store/configStore";
+import { selectTodays } from "store/todaySlice/todaySlice";
+import { useSelector } from "react-redux";
 
 const ToDay: React.FC = () => {
-  const [clickAddTask, setClickAddTask] = useState(false);
+  const [isClickAddTask, setIsClickAddTask] = useState(false);
 
   // get today from store
-  const todays = useAppSelector((state) =>
-    state.todayReducer.todays.filter((today) => today.status === 0)
+  const todays = useSelector(selectTodays).filter(
+    (today) => today.status === 0
   );
 
   const ClickAdd = () => {
-    setClickAddTask(true);
+    setIsClickAddTask(true);
   };
 
   const ClickCancel = () => {
-    setClickAddTask(false);
+    setIsClickAddTask(false);
   };
 
   return (
@@ -60,11 +61,11 @@ const ToDay: React.FC = () => {
           />
         ))}
         <AddTaskToday
-          clickAddTask={clickAddTask}
+          clickAddTask={isClickAddTask}
           ClickAdd={ClickAdd}
           ClickCancel={ClickCancel}
         />
-        {todays.length === 0 && !clickAddTask && (
+        {todays.length === 0 && !isClickAddTask && (
           <>
             <EmtyState
               image={

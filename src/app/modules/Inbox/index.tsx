@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faQuestion } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 import {
   CalendarViewDayOutlined,
   ChatBubbleOutline,
@@ -14,7 +15,7 @@ import AddTask from "app/components/atoms/AddTask";
 import AddSection from "app/components/atoms/AddSection";
 import EmtyState from "app/components/atoms/EmtyState";
 
-// Styled
+//
 import {
   GroupIcon,
   InboxTitle,
@@ -24,25 +25,23 @@ import {
 } from "./styled";
 
 // Store
-import { useAppSelector } from "store/configStore";
+import { selectInboxs } from "store/inboxSlice/selector";
 
 // Components
 import { InboxItem } from "app/modules/Inbox/components/InboxItem";
 
 const Inbox: React.FC = React.memo(() => {
-  const [clickAddTask, setClickAddTask] = useState(false);
+  const [isAddTask, setIsAddTask] = useState(false);
 
   // get inbox from store
-  const inboxs = useAppSelector((state) =>
-    state.inboxReducer.inboxs.filter((inbox) => inbox.status === 0)
-  );
+  const inboxs = useSelector(selectInboxs);
 
-  const ClickAdd = () => {
-    setClickAddTask(true);
+  const onClickAdd = () => {
+    setIsAddTask(true);
   };
 
-  const ClickCancel = () => {
-    setClickAddTask(false);
+  const onClickCancel = () => {
+    setIsAddTask(false);
   };
 
   return (
@@ -66,12 +65,12 @@ const Inbox: React.FC = React.memo(() => {
           />
         ))}
         <AddTask
-          clickAddTask={clickAddTask}
-          ClickAdd={ClickAdd}
-          ClickCancel={ClickCancel}
+          clickAddTask={isAddTask}
+          onClickAdd={onClickAdd}
+          onClickCancel={onClickCancel}
         />
         <AddSection />
-        {inboxs.length === 0 && !clickAddTask && (
+        {inboxs.length === 0 && !isAddTask && (
           <>
             <EmtyState
               image={

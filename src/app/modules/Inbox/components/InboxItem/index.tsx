@@ -13,7 +13,7 @@ import { MenuShowMoreInbox } from "./components/MenuShowMoreInbox/index";
 import FormAddInbox from "../FormAddInbox";
 
 // Styled
-import { BlockStyle, LeftStyle, RightStyle } from "./styled";
+import { BlockStyle, LeftStyle, RightStyle, StyleText } from "./styled";
 
 interface TaskItemProps {
   title: string;
@@ -57,7 +57,10 @@ export const InboxItem: React.FC<TaskItemProps> = (props) => {
         >
           <LeftStyle>
             {!isShowMore && (
-              <div className={`hide ${isHovered ? "show" : ""}`}>
+              <div
+                className={`hide ${isHovered ? "show" : ""}`}
+                style={{ marginLeft: "-30px" }}
+              >
                 <ButtonIcon iconStart={AppsIcon} />
               </div>
             )}
@@ -68,34 +71,34 @@ export const InboxItem: React.FC<TaskItemProps> = (props) => {
               description={description}
               type="inbox"
             />
-            <span>{title}</span>
+            <StyleText>
+              <div>{title}</div>
+              <div className="des">{description}</div>
+            </StyleText>
           </LeftStyle>
-          <RightStyle>
-            {isShowMore ? (
-              <span onClick={ClickShowMore} style={{ display: "inline" }}>
-                <ButtonIcon iconStart={MoreHorizIcon} />
-                {isShowMore && (
-                  <MenuShowMoreInbox
-                    id={id}
-                    status={status}
-                    title={title}
-                    description={description}
-                  />
-                )}
-              </span>
-            ) : (
+          <RightStyle className={`hide ${isHovered ? "show" : ""}`}>
+            {!isShowMore && (
               <>
-                <div className={`hide ${isHovered ? "show" : ""}`}>
-                  <span onClick={() => ClickEdit(id)}>
-                    <ButtonIcon iconStart={BorderColorIcon} />
-                  </span>
-                  <ButtonIcon iconStart={CalendarTodayIcon} />
-                  <ButtonIcon iconStart={ChatBubbleOutlineIcon} />
-                </div>
+                <span onClick={() => ClickEdit(id)}>
+                  <ButtonIcon iconStart={BorderColorIcon} />
+                </span>
+                <ButtonIcon iconStart={CalendarTodayIcon} />
+                <ButtonIcon iconStart={ChatBubbleOutlineIcon} />
                 <span onClick={ClickShowMore}>
                   <ButtonIcon iconStart={MoreHorizIcon} />
                 </span>
               </>
+            )}
+            {isShowMore && (
+              <span onClick={ClickShowMore}>
+                <ButtonIcon iconStart={MoreHorizIcon} />
+                <MenuShowMoreInbox
+                  title={title}
+                  description={description}
+                  status={status}
+                  id={id}
+                />
+              </span>
             )}
           </RightStyle>
         </BlockStyle>
