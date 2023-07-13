@@ -10,28 +10,28 @@ import { StyleButton, StyleIcon, Text } from "./styled";
 import FormAddToday from "app/modules/Today/components/FormAddToday";
 
 interface AddTaskProps {
-  clickAddTask: boolean;
-  ClickAdd: () => void;
-  ClickCancel: () => void;
+  isClickAddTask: boolean;
+  onClickAddToday: () => void;
+  onClickCancelToday: () => void;
 }
 
 const AddTaskToday: React.FC<AddTaskProps> = (props) => {
-  const { clickAddTask, ClickAdd, ClickCancel } = props;
+  const { isClickAddTask, onClickAddToday, onClickCancelToday } = props;
   const [task, setTask] = useState(false);
 
   const handleTask = () => {
-    ClickAdd();
+    onClickAddToday();
     setTask(true);
   };
 
   const handleCancel = () => {
-    ClickCancel();
+    onClickCancelToday();
     setTask(false);
   };
 
   return (
     <>
-      {!clickAddTask ? (
+      {!isClickAddTask ? (
         <StyleButton onClick={handleTask}>
           <StyleIcon>
             <FontAwesomeIcon icon={faPlus} />

@@ -27,7 +27,8 @@ import {
 
 // Store
 import { useAppDispatch } from "store/configStore";
-import { addToday, updateToday } from "store/todaySlice";
+import { addToday } from "store/todaySlice";
+// import { addToday, updateToday } from "store/todaySlice";
 
 interface TaskProps {
   task?: boolean;
@@ -79,7 +80,7 @@ const FormAddToday: React.FC<TaskProps> = ({ onCancel, initialTask }) => {
         status: initialTask.status,
       };
 
-      dispatch(updateToday(updatedToday));
+      // dispatch(updateToday(updatedToday));
     } else {
       // Add new task
       const newToday = {

@@ -2,7 +2,7 @@
 import { CalendarViewDayOutlined } from "@mui/icons-material";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faQuestion } from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 // Components
@@ -22,20 +22,27 @@ import {
 // Store
 import { selectTodays } from "store/todaySlice/todaySlice";
 import { useSelector } from "react-redux";
+import { getTodays } from "store/todaySlice";
+import { useAppDispatch } from "store/configStore";
 
 const ToDay: React.FC = () => {
   const [isClickAddTask, setIsClickAddTask] = useState(false);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(getTodays());
+  }, []);
 
   // get today from store
   const todays = useSelector(selectTodays).filter(
     (today) => today.status === 0
   );
 
-  const ClickAdd = () => {
+  const onClickAddToday = () => {
     setIsClickAddTask(true);
   };
 
-  const ClickCancel = () => {
+  const onClickCancelAddToday = () => {
     setIsClickAddTask(false);
   };
 
@@ -61,9 +68,9 @@ const ToDay: React.FC = () => {
           />
         ))}
         <AddTaskToday
-          clickAddTask={isClickAddTask}
-          ClickAdd={ClickAdd}
-          ClickCancel={ClickCancel}
+          isClickAddTask={isClickAddTask}
+          onClickAddToday={onClickAddToday}
+          onClickCancelToday={onClickCancelAddToday}
         />
         {todays.length === 0 && !isClickAddTask && (
           <>

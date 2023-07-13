@@ -22,9 +22,9 @@ import { selectInboxs } from "store/inboxSlice/selector";
 export const SideBar: React.FC = React.memo(() => {
   const { active } = useHeaderContext();
   // get today from store
-  const countToday = useSelector(selectTodays).filter(
-    (today) => today.status === 0
-  ).length;
+  // const countToday = useSelector(selectTodays).filter(
+  //   (today) => today.status === 0
+  // ).length;
 
   const countInbox = useSelector(selectInboxs).filter(
     (inbox) => inbox.status === 0
@@ -48,7 +48,7 @@ export const SideBar: React.FC = React.memo(() => {
                 icon={
                   "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSIGszzGbT2oU25LxT3-9U-9pUd8eFAubFQQ&usqp=CAU"
                 }
-                sub={countToday > 0 ? countToday.toString() : ""}
+                // sub={countToday > 0 ? countToday.toString() : ""}
               />
             </Link>
           </NavLinks>

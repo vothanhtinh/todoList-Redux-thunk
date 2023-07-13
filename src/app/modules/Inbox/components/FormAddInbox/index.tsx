@@ -81,7 +81,7 @@ const FormAddToday: React.FC<TaskProps> = ({ onCancel, initialTask }) => {
         status: initialTask.status,
       };
 
-      dispatch(updateInbox(updatedToday));
+      // dispatch(updateInbox(updatedToday));
     } else {
       // Add new task
       const newinbox = {
@@ -91,7 +91,7 @@ const FormAddToday: React.FC<TaskProps> = ({ onCancel, initialTask }) => {
         status: 0,
       };
 
-      dispatch(addInbox(newinbox));
+      // dispatch(addInbox(newinbox));
     }
 
     // Reset the form
