@@ -20,10 +20,11 @@ interface CheckBoxProps {
 export const Checkbox: React.FC<CheckBoxProps> = (props) => {
   const { id, title, status, description, type } = props;
   const todayId = id;
+  const inboxId = id;
   const dispatch = useAppDispatch();
   const ChangeStatus = () => {
     if (type === "inbox") {
-      // dispatch(changeStatusInbox({ id, title, status, description }));
+      dispatch(changeStatusInbox({ inboxId, title, status, description }));
     }
     if (type === "today") {
       dispatch(changeStatusToday({ todayId, title, status: 1, description }));

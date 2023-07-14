@@ -34,13 +34,15 @@ const Inbox: React.FC = React.memo(() => {
   const [isAddTask, setIsAddTask] = useState(false);
 
   // get inbox from store
-  const inboxs = useSelector(selectInboxs);
+  const inboxs = useSelector(selectInboxs).filter(
+    (inbox) => inbox.status === 0
+  );
 
-  const onClickAdd = () => {
+  const onClickAddInbox = () => {
     setIsAddTask(true);
   };
 
-  const onClickCancel = () => {
+  const onClickCancelInbox = () => {
     setIsAddTask(false);
   };
 
@@ -57,17 +59,17 @@ const Inbox: React.FC = React.memo(() => {
         </InboxTitle>
         {inboxs.map((inbox) => (
           <InboxItem
-            key={inbox.id}
+            key={inbox.inboxId}
             title={inbox.title}
             description={inbox.description}
             status={inbox.status}
-            id={inbox.id}
+            inboxId={inbox.inboxId}
           />
         ))}
         <AddTask
-          clickAddTask={isAddTask}
-          onClickAdd={onClickAdd}
-          onClickCancel={onClickCancel}
+          isClickAddTask={isAddTask}
+          onClickAddTask={onClickAddInbox}
+          onClickCancelTask={onClickCancelInbox}
         />
         <AddSection />
         {inboxs.length === 0 && !isAddTask && (

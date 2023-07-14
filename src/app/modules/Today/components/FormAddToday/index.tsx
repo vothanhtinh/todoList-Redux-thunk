@@ -98,7 +98,6 @@ const FormAddToday: React.FC<TaskProps> = ({ onCancel, initialTask }) => {
   };
 
   const isAddButtonDisabled = taskName.trim() === "";
-  console.log(isAddButtonDisabled);
   return (
     <FormContainer>
       <FormInput

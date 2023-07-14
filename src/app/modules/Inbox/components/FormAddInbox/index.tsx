@@ -27,20 +27,21 @@ import {
 
 // Store
 import { useAppDispatch } from "store/configStore";
-import { addInbox, updateInbox } from "store/inboxSlice";
+import { addInbox, updatedInbox } from "store/inboxSlice";
+// import { addInbox, updateInbox } from "store/inboxSlice";
 
 interface TaskProps {
   task?: boolean;
-  onCancel: () => void;
+  onCancelForm: () => void;
   initialTask?: {
-    id: string;
+    inboxId: string;
     title: string;
     description: string;
     status: number;
   };
 }
 
-const FormAddToday: React.FC<TaskProps> = ({ onCancel, initialTask }) => {
+const FormAddToday: React.FC<TaskProps> = ({ onCancelForm, initialTask }) => {
   const dispatch = useAppDispatch();
 
   const [taskName, setTaskName] = useState("");
@@ -65,39 +66,39 @@ const FormAddToday: React.FC<TaskProps> = ({ onCancel, initialTask }) => {
     setDescription(event.target.value);
   };
 
-  const handleCancel = () => {
+  const handleCancelForm = () => {
     setTaskName("");
     setDescription("");
-    onCancel();
+    onCancelForm();
   };
 
   const handleAddTask = () => {
     if (initialTask) {
       // Update existing task
-      const updatedToday = {
-        id: initialTask.id,
+      const updatedinbox = {
+        inboxId: initialTask.inboxId,
         title: taskName,
         description: description,
         status: initialTask.status,
       };
 
-      // dispatch(updateInbox(updatedToday));
+      dispatch(updatedInbox(updatedinbox));
     } else {
       // Add new task
       const newinbox = {
-        id: uuidv4(),
+        inboxId: uuidv4(),
         title: taskName,
         description: description,
         status: 0,
       };
 
-      // dispatch(addInbox(newinbox));
+      dispatch(addInbox(newinbox));
     }
 
     // Reset the form
     setTaskName("");
     setDescription("");
-    onCancel();
+    handleCancelForm();
   };
 
   return (
@@ -131,7 +132,7 @@ const FormAddToday: React.FC<TaskProps> = ({ onCancel, initialTask }) => {
           />
         </PaddingStyle>
         <PaddingStyle>
-          <StyleButton onClick={handleCancel}>Cancel</StyleButton>
+          <StyleButton onClick={handleCancelForm}>Cancel</StyleButton>
           <StyleButton
             disabled={isAddButtonDisabled}
             onClick={handleAddTask}
