@@ -6,9 +6,6 @@ interface StyleInboxProps {}
 
 export const StyleInbox = styled.div<StyleInboxProps>`
   padding: 40px 40px 0 0px;
-  @media (max-width: "500px") {
-    margin-left: -100px !important;
-  }
 `;
 
 export const InboxTitle = styled.div`
