@@ -7,6 +7,7 @@ import { CheckboxLable } from "./styled";
 //Store
 import { useAppDispatch } from "store/configStore";
 import { changeStatusInbox } from "store/inboxSlice";
+import { changeStatusToday } from "store/todaySlice";
 // import { changeStatusToday } from "store/todaySlice";
 
 interface CheckBoxProps {
@@ -18,13 +19,14 @@ interface CheckBoxProps {
 }
 export const Checkbox: React.FC<CheckBoxProps> = (props) => {
   const { id, title, status, description, type } = props;
+  const todayId = id;
   const dispatch = useAppDispatch();
   const ChangeStatus = () => {
     if (type === "inbox") {
       // dispatch(changeStatusInbox({ id, title, status, description }));
     }
     if (type === "today") {
-      // dispatch(changeStatusToday({ id, title, status, description }));
+      dispatch(changeStatusToday({ todayId, title, status: 1, description }));
     }
   };
 

@@ -29,14 +29,14 @@ const ToDay: React.FC = () => {
   const [isClickAddTask, setIsClickAddTask] = useState(false);
   const dispatch = useAppDispatch();
 
-  useEffect(() => {
-    dispatch(getTodays());
-  }, []);
-
   // get today from store
   const todays = useSelector(selectTodays).filter(
     (today) => today.status === 0
   );
+
+  useEffect(() => {
+    dispatch(getTodays());
+  }, []);
 
   const onClickAddToday = () => {
     setIsClickAddTask(true);
@@ -45,7 +45,6 @@ const ToDay: React.FC = () => {
   const onClickCancelAddToday = () => {
     setIsClickAddTask(false);
   };
-
   return (
     <>
       <StyleInbox>
@@ -58,11 +57,12 @@ const ToDay: React.FC = () => {
             <GroupIcon startIcon={<CalendarViewDayOutlined />}>View</GroupIcon>
           </div>
         </InboxTitle>
+
         {todays.map((today) => (
           <TodayItem
             title={today.title}
-            key={today.id}
-            id={today.id}
+            key={today.todayId}
+            todayId={today.todayId}
             description={today.description}
             status={today.status}
           />
